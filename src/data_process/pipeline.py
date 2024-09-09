@@ -54,21 +54,21 @@ def _compose_title_node_type(dc: dataCollection):
 
 
 def _compose_relation(dc):
-    rel = [[":START_ID", ":END_ID", ":TYPE"]]
+    rel = [[":START_ID", ":END_ID", ":TYPE", "desc"]]
     for chapter, sections in dc.chapter_section_rel.items():
         for section in sections:
             id1, id2 = dc.idmap[section], dc.idmap[chapter]
-            rel.append([id1, id2, "belongsTo"])
+            rel.append([id1, id2, "belongsTo", "section-chapter"])
 
     for section, pids in dc.section_pid_rel.items():
         for pid in pids:
             id1, id2 = dc.idmap[pid], dc.idmap[section]
-            rel.append([id1, id2, "belongsTo"])
+            rel.append([id1, id2, "belongsTo", "pid-section"])
 
     for poem in dc.data:
         id1, id2, id3 = dc.idmap[poem.pid], dc.idmap[poem.title], dc.idmap[poem.chapter]
-        rel.append([id1, id2, "belongsTo"])
-        rel.append([id1, id3, "belongsTo"])
+        rel.append([id1, id2, "belongsTo", "pid-title"])
+        rel.append([id1, id3, "belongsTo", "pid-chapter"])
 
     filename = "data/neo4j/relation.csv"
     save_csv(filename, rel)
