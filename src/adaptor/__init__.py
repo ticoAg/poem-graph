@@ -1,1 +1,0 @@
-from src.adaptor.shijing import ShiJingModel

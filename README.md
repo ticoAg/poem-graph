@@ -17,9 +17,10 @@ docker run -itd \
 dbms.default_database=graphdb
 
 # 把数据放在~/Documents/poem-graph/data/neo4j/import下, 清除库并重新导入
-neo4j-admin database import full graphdb \
-	--nodes=import/node.csv \
-	--relationships=import/relation.csv \
-	--overwrite-destination \
-	--verbose
+neo4j-admin database import full \
+    --nodes=./data/neo4j/node.csv \
+    --relationships=./data/neo4j/rel.csv \
+    --overwrite-destination=true \
+    neo4j && \
+    neo4j console
 ```
