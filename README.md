@@ -18,7 +18,8 @@ dbms.default_database=graphdb
 
 # 把数据放在~/Documents/poem-graph/data/neo4j/import下, 清除库并重新导入
 neo4j-admin database import full \
-    --nodes=./data/neo4j/node.csv \
+    --nodes=./data/neo4j/poem_node.csv \
+    --nodes=./data/neo4j/type_node.csv \
     --relationships=./data/neo4j/rel.csv \
     --overwrite-destination=true \
     neo4j && \
